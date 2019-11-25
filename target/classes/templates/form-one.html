@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta content="text/html; charset=utf-8 " http-equiv="Content-Type"/>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          rel="stylesheet"/>
+</head>
+
+<body>
+<div th:include="menu :: menu-one"></div>
+<div class="container">
+    <form action="#" class="form-horizontal" method="post"
+          th:action="@{/}" th:object="${person}">
+        <div class="form-group">
+            <label class="control-label" for="firstName">firstName:</label>
+            <input class="form-control" id="firstName" placeholder="Enter firstName"
+                   th:field="*{firstName}" type="text"/>
+            <label class="control-label" for="lastName">lastName:</label>
+            <input class="form-control" id="lastName" placeholder="Enter lastName"
+                   th:field="*{lastName}" type="text"/>
+            <label class="control-label" for="nationaCode">nationaCode:</label>
+            <input class="form-control" id="nationaCode" placeholder="Enter lastName"
+                   th:field="*{nationalCode}" type="text"/>
+            <button class="btn btn-primary" style="margin-top: 10px" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>
