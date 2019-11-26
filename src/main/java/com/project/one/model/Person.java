@@ -12,19 +12,19 @@ public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    private long id;
 
     @Column(name = "first_name")
     @Size(min = 3)
-    String firstName;
+    private String firstName;
 
     @Size(min = 3)
     @Column(nullable = false, name = "last_name")
-    String lastName;
+    private String lastName;
 
     @Size(min = 3)
     @Column(name = "national_code")
-    String nationalCode;
+    private String nationalCode;
 
     public Person(String firstName, String lastName, String nationalCode) {
         this.firstName = firstName;
