@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @Aspect
 public class LogAspect {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @After("execution(* com.project.one.web.*.*(..))")
+    @After("execution(* com.project.one.controller.*.*(..))")
     public void afterExecution(JoinPoint joinPoint) {
         //Advice
         logger.info("execution for {}", joinPoint);

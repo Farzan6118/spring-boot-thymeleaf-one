@@ -1,6 +1,6 @@
 package com.project.one;
 
-import com.project.one.web.PersonController;
+import com.project.one.controller.PersonController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

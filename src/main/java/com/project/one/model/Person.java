@@ -1,76 +1,41 @@
 package com.project.one.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
-@Table(name = "person")
+@Table(name = "people")
 public class Person implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    @Column(name = "first_name")
     @Size(min = 3)
     private String firstName;
 
     @Size(min = 3)
-    @Column(nullable = false, name = "last_name")
+    @Column(nullable = false)
     private String lastName;
 
-    @Size(min = 3)
-    @Column(name = "national_code")
+    @Size(min = 3, max = 10)
     private String nationalCode;
 
-    public Person(String firstName, String lastName, String nationalCode) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nationalCode = nationalCode;
-    }
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate birthDate;
 
-    public Person() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getNationalCode() {
-        return nationalCode;
-    }
-
-    public void setNationalCode(String nationalCode) {
-        this.nationalCode = nationalCode;
-    }
-
-    @Override
-    public String toString() {
-        return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", nationalCode="
-                + nationalCode + "]";
-    }
 
 }

@@ -14,7 +14,7 @@ body {
 
 table, tr, td, th {
     margin: auto;
-    border-bottom: 1px solid medium;
+    border-bottom: 1px solid;
     border-collapse: collapse;
     direction: rtl;
     padding: 10px;
