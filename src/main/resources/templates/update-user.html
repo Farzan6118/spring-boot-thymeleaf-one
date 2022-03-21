@@ -43,9 +43,9 @@
         <div class="row">
             <div class="col">
                 <label for="gender">Gender</label>
-                <select class="form-control" id="gender">
-                    <option>Male</option>
-                    <option>Female</option>
+                <select class="form-control" id="gender" name="gender">
+                    <option th:each="gender : ${T(com.project.one.model.Gender).values()}"
+                            th:value="${gender}" th:text="${gender}"></option>
                 </select>
                 <span th:errors="*{gender}" th:if="${#fields.hasErrors('gender')}"></span>
             </div>
@@ -54,7 +54,7 @@
                 <label class="control-label" for="birthDate">BirthDate</label>
                 <input class="form-control" id="birthDate" placeholder="BirthDate"
                        th:field="*{birthDate}" type="date"/>
-                <span th:errors="*{birthDate}" th:if="${#fields.hasErrors('nationalCode')}"></span>
+                <span th:errors="*{birthDate}" th:if="${#fields.hasErrors('birthDate')}"></span>
             </div>
         </div>
 
@@ -67,8 +67,8 @@
             </div>
             <div class="col">
                 <label for="email">Email</label>
-                <input class="form-control" id="email" placeholder="Email" th:field="*{email}"
-                       type="email">
+                <input class="form-control" id="email" placeholder="Email"
+                       th:field="*{email}" type="email"/>
                 <span th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></span>
             </div>
         </div>

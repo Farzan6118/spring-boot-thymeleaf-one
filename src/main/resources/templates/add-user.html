@@ -44,9 +44,9 @@
         <div class="row">
             <div class="col">
                 <label for="gender">Gender</label>
-                <select class="form-control" id="gender">
-                    <option>Male</option>
-                    <option>Female</option>
+                <select class="form-control" id="gender" name="gender">
+                    <option th:each="gender : ${T(com.project.one.model.Gender).values()}"
+                            th:value="${gender}" th:text="${gender}"></option>
                 </select>
                 <span th:errors="*{gender}" th:if="${#fields.hasErrors('gender')}"></span>
             </div>

@@ -31,6 +31,7 @@
                     <th scope="col">LastName</th>
                     <th scope="col">Gender</th>
                     <th scope="col">Email</th>
+                    <th scope="col">BirthDate</th>
                     <th scope="col">nationalCode</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
@@ -43,6 +44,7 @@
                     <td th:text="${user.lastName}"></td>
                     <td th:text="${user.gender}"></td>
                     <td th:text="${user.email}"></td>
+                    <td th:text="${user.birthDate}"></td>
                     <td th:text="${user.nationalCode}"></td>
                     <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
                     <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>

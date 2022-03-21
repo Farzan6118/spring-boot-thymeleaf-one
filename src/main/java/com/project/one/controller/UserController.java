@@ -19,12 +19,6 @@ public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
 
-    @GetMapping
-    public String greetingForm(Model model) {
-        model.addAttribute("user", new User());
-        return "add-user";
-    }
-
     @GetMapping("/index")
     public String showUserList(Model model) {
         model.addAttribute("users", userRepository.findAll());
@@ -32,7 +26,8 @@ public class UserController {
     }
 
     @GetMapping("/signup")
-    public String showSignUpForm(User user) {
+    public String showSignUpForm(Model model, User user) {
+        model.addAttribute(user);
         return "add-user";
     }
 
@@ -42,6 +37,7 @@ public class UserController {
             return "add-user";
         }
         userRepository.save(user);
+        model.addAttribute(user);
         return "redirect:/index";
     }
 
@@ -49,7 +45,7 @@ public class UserController {
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-
+        userRepository.save(user);
         model.addAttribute("user", user);
         return "update-user";
     }

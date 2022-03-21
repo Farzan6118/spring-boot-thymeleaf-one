@@ -25,6 +25,7 @@ public class User extends AuditClass implements Serializable {
     private Long id;
 
     @Size(min = 3)
+    @Column(nullable = false)
     private String firstName;
 
     @Size(min = 3)
