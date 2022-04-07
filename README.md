@@ -1,2 +1,2 @@
-# spring-boot-project-one
+# spring-boot-crud with thymeleaf
 spring-mvc, spring-boot, rdbms (MySQL), caching, AOP (logging)
