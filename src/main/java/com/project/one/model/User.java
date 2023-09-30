@@ -1,14 +1,14 @@
 package com.project.one.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -17,11 +17,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
-public class User extends AuditClass implements Serializable {
+public class User extends Auditable implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+            (strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Size(min = 3)
@@ -32,7 +32,7 @@ public class User extends AuditClass implements Serializable {
     @Column(nullable = false)
     private String lastName;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -42,7 +42,6 @@ public class User extends AuditClass implements Serializable {
     private String nationalCode;
 
     @Email
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private String email;
 
 
