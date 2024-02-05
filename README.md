@@ -1,2 +1,2 @@
-# spring-boot-crud with thymeleaf
-spring-mvc, spring-boot, rdbms (MySQL), caching, AOP (logging)
+# spring-boot crud with thymeleaf template
+spring-boot, spring-mvc, MySQL, Caching, AOP for log
