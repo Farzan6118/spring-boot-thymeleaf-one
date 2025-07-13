@@ -1,61 +1,80 @@
 <!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer List - Spring Boot Thymeleaf</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-          rel="stylesheet"/>
-    <title>Spring Boot Thymeleaf Sample</title>
-
+    <style>
+        body {
+            padding-top: 60px;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
-<div th:include="menu :: menu-one"></div>
+
+<div th:replace="menu :: menu-one"></div>
+
 <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Customer List</h2>
+        <a th:href="@{/signup}" class="btn btn-primary">Add New Customer</a>
+    </div>
 
     <div th:switch="${users}">
-        <h2 th:case="null">No users yet!</h2>
+        <div th:case="null">
+            <div class="alert alert-info" role="alert">
+                No customers found. Please add a new customer.
+            </div>
+        </div>
+
         <div th:case="*">
-            <h2>Users</h2>
-            <table class="table">
-                <thead>
+            <table class="table table-bordered table-hover table-striped align-middle">
+                <thead class="table-dark">
                 <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">FirstName</th>
-                    <th scope="col">LastName</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
                     <th scope="col">Gender</th>
                     <th scope="col">Email</th>
-                    <th scope="col">BirthDate</th>
-                    <th scope="col">nationalCode</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Birth Date</th>
+                    <th scope="col">National Code</th>
+                    <th scope="col" colspan="2" class="text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user : ${users}">
-                    <th scope="row" th:text="${user.id}"></th>
-                    <td th:text="${user.firstName}"></td>
-                    <td th:text="${user.lastName}"></td>
-                    <td th:text="${user.gender}"></td>
-                    <td th:text="${user.email}"></td>
-                    <td th:text="${user.birthDate}"></td>
-                    <td th:text="${user.nationalCode}"></td>
-                    <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
-                    <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+                <tr th:each="customer : ${users}">
+                    <td th:text="${customer.id}"></td>
+                    <td th:text="${customer.firstName}"></td>
+                    <td th:text="${customer.lastName}"></td>
+                    <td th:text="${customer.gender}"></td>
+                    <td th:text="${customer.email}"></td>
+                    <td th:text="${customer.birthDate}"></td>
+                    <td th:text="${customer.nationalCode}"></td>
+                    <td class="text-center">
+                        <a th:href="@{/edit/{id}(id=${customer.id})}" class="btn btn-sm btn-warning">Edit</a>
+                    </td>
+                    <td class="text-center">
+                        <a th:href="@{/delete/{id}(id=${customer.id})}" class="btn btn-sm btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this customer?');">
+                            Delete
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <p><a th:href="@{/signup}">Add a new user</a></p>
     </div>
-
 </div>
-</body>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>

@@ -1,0 +1,13 @@
+server:
+  port: 8182
+
+spring:
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test
+    username: user
+    password: pass

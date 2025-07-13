@@ -6,12 +6,11 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableCaching
-@SpringBootApplication
 @EnableJpaAuditing
+@SpringBootApplication
 public class SpringBootProjectOneApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(SpringBootProjectOneApplication.class, args);
     }
 

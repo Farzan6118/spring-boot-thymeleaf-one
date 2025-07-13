@@ -1,85 +1,73 @@
 <!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
+    <title>Update Customer</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-          rel="stylesheet"/>
-    <title>Spring Boot Thymeleaf Sample</title>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 
 <body>
 <div th:include="menu :: menu-one"></div>
-<div class="container">
 
-    <form action="#"
-          method="post"
-          th:action="@{/update/{id}(id=${user.id})}"
-          th:object="${user}">
+<div class="container mt-4">
+    <h2 class="mb-4">Update Customer</h2>
 
-        <div class="row">
+    <form th:action="@{/update/{id}(id=${customer.id})}" th:object="${customer}" method="post">
+
+        <div class="row mb-3">
             <div class="col">
-                <label for="firstName">FirstName</label>
-                <input class="form-control" id="firstName" placeholder="FirstName"
-                       th:field="*{firstName}" type="text"/>
-                <span th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}"></span>
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" th:field="*{firstName}" id="firstName" class="form-control" placeholder="First Name"/>
+                <div class="text-danger small" th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}"></div>
             </div>
-
             <div class="col">
-                <label for="lastName">LastName</label>
-                <input class="form-control" id="lastName" placeholder="LastName"
-                       th:field="*{lastName}" type="text"/>
-                <span th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></span>
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" th:field="*{lastName}" id="lastName" class="form-control" placeholder="Last Name"/>
+                <div class="text-danger small" th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
-                <label for="gender">Gender</label>
-                <select class="form-control" id="gender" name="gender">
-                    <option th:each="gender : ${T(com.project.one.model.Gender).values()}"
-                            th:value="${gender}" th:text="${gender}"></option>
+                <label for="gender" class="form-label">Gender</label>
+                <select class="form-select" th:field="*{gender}" id="gender">
+                    <option th:each="g : ${T(com.project.one.domain.constant.Gender).values()}"
+                            th:value="${g.name()}"
+                            th:text="${g.name()}"></option>
                 </select>
-                <span th:errors="*{gender}" th:if="${#fields.hasErrors('gender')}"></span>
+                <div class="text-danger small" th:errors="*{gender}" th:if="${#fields.hasErrors('gender')}"></div>
             </div>
-
             <div class="col">
-                <label class="control-label" for="birthDate">BirthDate</label>
-                <input class="form-control" id="birthDate" placeholder="BirthDate"
-                       th:field="*{birthDate}" type="date"/>
-                <span th:errors="*{birthDate}" th:if="${#fields.hasErrors('birthDate')}"></span>
+                <label for="birthDate" class="form-label">Birth Date</label>
+                <input type="date" th:field="*{birthDate}" id="birthDate" class="form-control"/>
+                <div class="text-danger small" th:errors="*{birthDate}" th:if="${#fields.hasErrors('birthDate')}"></div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
-                <label class="control-label" for="nationalCode">National Code</label>
-                <input class="form-control" id="nationalCode" placeholder="National Code"
-                       th:field="*{nationalCode}" type="text"/>
-                <span th:errors="*{nationalCode}" th:if="${#fields.hasErrors('nationalCode')}"></span>
+                <label for="nationalCode" class="form-label">National Code</label>
+                <input type="text" th:field="*{nationalCode}" id="nationalCode" class="form-control" placeholder="National Code"/>
+                <div class="text-danger small" th:errors="*{nationalCode}" th:if="${#fields.hasErrors('nationalCode')}"></div>
             </div>
             <div class="col">
-                <label for="email">Email</label>
-                <input class="form-control" id="email" placeholder="Email"
-                       th:field="*{email}" type="email"/>
-                <span th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></span>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" th:field="*{email}" id="email" class="form-control" placeholder="Email"/>
+                <div class="text-danger small" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <button class="btn btn-primary" style="margin-top: 10px" type="submit">Submit</button>
-            </div>
-        </div>
+
+        <button type="submit" class="btn btn-success">Update</button>
+        <a th:href="@{/index}" class="btn btn-secondary ms-2">Cancel</a>
 
     </form>
 </div>
-</body>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
